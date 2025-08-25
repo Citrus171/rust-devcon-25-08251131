@@ -1,0 +1,37 @@
+https://qiita.com/ain1084/items/6cb6d82852c91416ec0e
+
+
+
+vscode ➜ /workspaces/rust-devcon-25-08251131 (main) $ cargo run
+cargo run
+http://localhost:4000/
+http://127.0.0.1:4000/
+
+https://qiita.com/otohusan/items/491d110aba406f5b3fa0
+https://higmasan.com/rust/getting-started-with-web-applications-in-rust-2023-axum/
+
+use axum::{Router, routing::get};
+
+#[tokio::main]
+async fn main() {
+    // Hello Worldと返すハンドラーを定義
+    async fn root_handler() -> String {
+        "Hello Worl55d".to_string()
+    }
+
+    // ルートを定義
+    // "/"を踏むと、上で定義したroot_handlerを実行する
+    let app = Router::new().route("/", get(root_handler));
+
+    // 指定したポートにサーバを開く
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:4000").await.unwrap();
+    axum::serve(listener, app).await.unwrap();
+}
+
+
+VS Code でそのプロジェクトを開く
+コマンドパレットを開く
+Windows / Linux: Ctrl + Shift + P
+検索ボックスに Dev Containers: Reopen in Container と入力して選択
+Docker イメージのビルド → コンテナ起動が始まり、しばらくすると VS Code がコンテナ内に再接続されます
+
